@@ -1,4 +1,0 @@
-push and pull 1
-push and pull 2
-push and pull 3
-push and pull 4
