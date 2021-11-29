@@ -51,7 +51,7 @@ public class UserIO {
             while(s.hasNextLine()){
                 line=s.nextLine();
                 //need to split it and match the column/variable name
-                String [] arrData = line.split(Pattern.quote("|"),13);
+                String [] arrData = line.split(Pattern.quote("|"),7);
                 if(x.equals(arrData[0])){
                     //if the id is present, add the old info + new info into
                     //the tempArray
