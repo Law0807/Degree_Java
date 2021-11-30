@@ -136,28 +136,27 @@ public class Login extends javax.swing.JFrame {
         new MainPage().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnExitActionPerformed
-
+    
+    public static User tempuser;
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
         // TODO add your handling code here:
-        new CustomerMainPage().setVisible(true);
-        this.setVisible(false);
-        
-//        String id = txtUsername.getText();
-//        String password = txtPassword.getText();
-//        User found = UserIO.checking(id);
-//        if(found!=null){
-//            if(password.equals(found.getPassword())){
-//               JOptionPane.showMessageDialog(null, "Login Successfully!");
-//               setVisible(false);
-//               new CustomerMainPage().setVisible(true);
-//            }else{
-//                JOptionPane.showMessageDialog(null, "Wrong Password!");
-//            }
-//        } else{
-//            JOptionPane.showMessageDialog(null, "You haven't registered!");
-//            setVisible(false);
-//            new MainPage().setVisible(true);
-//        }
+        String id = txtUsername.getText();
+        String password = txtPassword.getText();
+        User found = UserIO.checking(id);
+        if(found!=null){
+            if(password.equals(found.getPassword())){
+               JOptionPane.showMessageDialog(null, "Login Successfully!");
+               new CustomerMainPage().setVisible(true);
+               this.setVisible(false);
+               tempuser = (User)found;
+            }else{
+                JOptionPane.showMessageDialog(null, "Wrong Password!");
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "You haven't registered!");
+            setVisible(false);
+            new MainPage().setVisible(true);
+        }
     }//GEN-LAST:event_btnLogInActionPerformed
 
     /**

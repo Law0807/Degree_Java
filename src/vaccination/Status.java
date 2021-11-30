@@ -16,6 +16,7 @@ public class Status extends javax.swing.JFrame {
      */
     public Status() {
         initComponents();
+        Login.tempuser.getIC();
     }
 
     /**

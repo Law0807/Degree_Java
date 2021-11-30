@@ -16,6 +16,7 @@ public class CustomerProfile extends javax.swing.JFrame {
      */
     public CustomerProfile() {
         initComponents();
+        Login.tempuser.getIC();
     }
 
     /**
