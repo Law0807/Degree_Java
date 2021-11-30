@@ -75,11 +75,11 @@ public class UserIO {
                 pr.println(
                         allUser.get(i).getName()+"|"
                                 +allUser.get(i).getPassword()+"|"
-                                +allUser.get(i).getIC()+"|"
+                                +allUser.get(i).getIc()+"|"
                                 +allUser.get(i).getGender()+"|"
-                                +allUser.get(i).getnationality()+"|"
-                                +allUser.get(i).getphonenumber()+"|"
-                                +allUser.get(i).getemail());
+                                +allUser.get(i).getNationality()+"|"
+                                +allUser.get(i).getPhonenumber()+"|"
+                                +allUser.get(i).getEmailaddress());
             }
             System.out.println(allUser.toString()); 
             pr.close();
@@ -99,7 +99,7 @@ public class UserIO {
     public static User checking(String x){
         User found = null;
         for(User c:allUser){
-            if(x.equals(c.getIC())){
+            if(x.equals(c.getIc())){
             return c;
             }
         }
