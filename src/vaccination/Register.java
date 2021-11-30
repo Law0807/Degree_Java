@@ -186,7 +186,7 @@ public class Register extends javax.swing.JFrame {
         if((txtName.equals(""))) {
                 JOptionPane.showMessageDialog(null,"Registration Failed!");
             } else if(found==null){
-                User p = new User(name, password, ic, gender, nationality, phone, email);
+                User p = new User(name, gender, nationality, ic, phone, email, password);
                 UserIO.allUser.add(p);
                 UserIO.write();
                 JOptionPane.showMessageDialog(null, "Your account has been registered. Please login.");

@@ -23,7 +23,7 @@ public class User {
         this.ic = ic;
         this.nationality = nationality;
         this.phonenumber = phonenumber;
-        this.emailaddress = emailaddress;
+        this.emailaddress = email;
         this.password = password;
         this.gender = gender;
     }
