@@ -21,7 +21,7 @@ public class AppointmentIO {
     public static ArrayList<UserAppointment> allAppointment = new ArrayList<UserAppointment>();
     public static void read(){
         try{
-            Scanner s = new Scanner(new File("userappointment.txt"));
+            Scanner s = new Scanner(new File("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Appointment.txt"));
             while(s.hasNextLine()){
                 String data = s.nextLine();
                 String [] arrData = data.split(Pattern.quote("|"),11);
@@ -53,7 +53,7 @@ public class AppointmentIO {
     public static void read(String x, String y){
         //read data
         try{
-            FileReader modifypass = new FileReader("userappointment.txt");
+            FileReader modifypass = new FileReader("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Appointment.txt");
             Scanner s = new Scanner(modifypass);
             String line;
             while(s.hasNextLine()){
@@ -78,7 +78,7 @@ public class AppointmentIO {
     
     public static void write(){
         try{
-            PrintWriter pr = new PrintWriter("userappointment.txt");
+            PrintWriter pr = new PrintWriter("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Appointment.txt");
             for(int i=0; i<allAppointment.size();i++){           
                 pr.println(allAppointment.get(i).getName()+"|"+allAppointment.get(i).getGender()+"|"+allAppointment.get(i).getnationality()+allAppointment.get(i).getIC()+"|"
                 +"|"+allAppointment.get(i).getemail()+"|"+allAppointment.get(i).getphonenumber()+"|"+allAppointment.get(i).getPassword()+"|"+allAppointment.get(i).getDate()
@@ -86,7 +86,7 @@ public class AppointmentIO {
             }
             pr.close();
             //forgot password -> modify password
-            PrintWriter prpass = new PrintWriter("userappointment.txt");
+            PrintWriter prpass = new PrintWriter("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Appointment.txt");
             for(String str: tempArray){
                 //write back the data to the file line by line
                 prpass.println(str);

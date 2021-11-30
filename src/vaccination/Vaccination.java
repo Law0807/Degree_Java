@@ -23,6 +23,32 @@ public class Vaccination {
         this.Quantity = Quantity;
         this.Supplier = Supplier;
     }
+
+    public String getVaccine() {
+        return Vaccine;
+    }
+
+    public void setVaccine(String Vaccine) {
+        this.Vaccine = Vaccine;
+    }
+
+    public String getQuantity() {
+        return Quantity;
+    }
+
+    public void setQuantity(String Quantity) {
+        this.Quantity = Quantity;
+    }
+
+    public String getSupplier() {
+        return Supplier;
+    }
+
+    public void setSupplier(String Supplier) {
+        this.Supplier = Supplier;
+    }
+    
+    
     
     public static void main(String[] args) {
         // TODO code application logic here

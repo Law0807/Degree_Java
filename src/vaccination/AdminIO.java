@@ -11,15 +11,14 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class AdminIO {
-    public static ArrayList<Admin> allStaff 
-            = new ArrayList<Admin>();
+    public static ArrayList<Admin> allStaff = new ArrayList<Admin>();
     
     public static void read(){
         try{
-            Scanner s = new Scanner(new File("admin.txt"));
+            Scanner s = new Scanner(new File("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Staffs.txt"));
             while(s.hasNextLine()){
                 String data = s.nextLine();
-                String [] staffdetail = data.split(Pattern.quote(","),3);
+                String [] staffdetail = data.split(Pattern.quote(" "),3);
                 String username = staffdetail[0];
                 String password = staffdetail[1];
                 

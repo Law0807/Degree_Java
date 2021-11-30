@@ -16,7 +16,7 @@ public class UserIO {
     public static ArrayList<User> allUser = new ArrayList<User>();
     public static void read(){
         try{
-            Scanner s = new Scanner(new File("user.txt"));
+            Scanner s = new Scanner(new File("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Users.txt"));
             while(s.hasNextLine()){
                 String data = s.nextLine();
                 //need to split it and match the column/variable name
@@ -45,7 +45,7 @@ public class UserIO {
     public static void read(String x, String y){
         //read data
         try{
-            FileReader modifypass = new FileReader("userdetail.txt");
+            FileReader modifypass = new FileReader("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Users.txt");
             Scanner s = new Scanner(modifypass);
             String line;
             while(s.hasNextLine()){
@@ -70,14 +70,14 @@ public class UserIO {
     
     public static void write(){
         try{
-            PrintWriter pr = new PrintWriter("userdetail.txt");
+            PrintWriter pr = new PrintWriter("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Users.txt");
             for(int i=0; i<allUser.size();i++){
                 pr.println(allUser.get(i).getName()+"|"+allUser.get(i).getIC()+"|"+allUser.get(i).getPassword()+allUser.get(i).getGender()+"|"
                 +"|"+allUser.get(i).getnationality()+"|"+allUser.get(i).getemail()+"|"+allUser.get(i).getphonenumber());
             }
             pr.close();
             //forgot password -> modify password
-            PrintWriter prpass = new PrintWriter("userdetail.txt");
+            PrintWriter prpass = new PrintWriter("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Users.txt");
             for(String str: tempArray){
                 //write back the data to the file line by line
                 prpass.println(str);
