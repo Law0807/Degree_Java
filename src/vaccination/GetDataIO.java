@@ -14,8 +14,8 @@ import java.util.List;
  * @author liyaw
  */
 public class GetDataIO {
-    private static final String people = "C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Users.txt";
-    private static final String appointment = "C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Appointment.txt";
+    private static final String people = "Users.txt";
+    private static final String appointment = "Appointment.txt";
 
     public static String[] getAppointment() {
         List<String> data = null;

@@ -21,7 +21,7 @@ public class ManageVaccine extends javax.swing.JFrame {
     
     public ManageVaccine() {
         initComponents();
-        File archivo = new File("C:\\Users\\Asus\\eclipse-workspace\\Assignment\\Vaccines.txt");
+        File archivo = new File("Vaccines.txt");
         FileReader fr = null;
         try {
                 fr = new FileReader(archivo);
@@ -243,7 +243,7 @@ public class ManageVaccine extends javax.swing.JFrame {
                 BufferedReader brv = null;
 
                 try {
-                        rfv = new FileReader("C:\\Users\\Asus\\eclipse-workspace\\Assignment\\Vaccines.txt");
+                        rfv = new FileReader("Vaccines.txt");
                 } catch (FileNotFoundException e1) {
                         System.out.println("File not found.");
                 }

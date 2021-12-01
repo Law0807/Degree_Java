@@ -28,7 +28,7 @@ public class AdminMainPage extends javax.swing.JFrame {
      */
     public AdminMainPage() {
         initComponents();
-        File archivo = new File("C:\\Users\\Asus\\eclipse-workspace\\Assignment\\Appointment.txt");
+        File archivo = new File("Appointment.txt");
         FileReader fr = null;
         try {
                 fr = new FileReader(archivo);
@@ -64,6 +64,7 @@ public class AdminMainPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -93,6 +94,8 @@ public class AdminMainPage extends javax.swing.JFrame {
         menuVaccine = new javax.swing.JMenu();
 
         jLabel10.setText("jLabel10");
+
+        jLabel12.setText("jLabel12");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,6 +151,11 @@ public class AdminMainPage extends javax.swing.JFrame {
         });
 
         menuVaccine.setText("Vaccine");
+        menuVaccine.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuVaccineMouseClicked(evt);
+            }
+        });
         menuVaccine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuVaccineActionPerformed(evt);
@@ -303,6 +311,12 @@ public class AdminMainPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void menuVaccineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVaccineMouseClicked
+        // TODO add your handling code here:
+        new ManageVaccine().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menuVaccineMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -349,6 +363,7 @@ public class AdminMainPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
