@@ -15,7 +15,7 @@ public class AdminIO {
     
     public static void read(){
         try{
-            Scanner s = new Scanner(new File("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Staffs.txt"));
+            Scanner s = new Scanner(new File("Staffs.txt"));
             while(s.hasNextLine()){
                 String data = s.nextLine();
                 String [] staffdetail = data.split(Pattern.quote(" "),3);

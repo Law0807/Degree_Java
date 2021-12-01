@@ -36,7 +36,6 @@ public class Appointment extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Appointment Not Made Yet.");
             txtStatus.setText("Pending");
             setVisible(false);
-            new MainPage().setVisible(true);
         }
     }
 

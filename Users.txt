@@ -1,10 +1,4 @@
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-123|123|Male|123|1213|Citizen|123
-Keith|123|12312|Male|Citizen|1233333|kkkz@mail.com
-=======
-21|21|21|Male|Citizen|21|21
->>>>>>> 6b873c9dacca58c07e15513237c05b1ee474b37e
-=======
-12|Male|Citizen|12|12|12|12
->>>>>>> Stashed changes
+Kiro|Male|Citizen|123123|1234455|123@mail.com|root
+123|Male|Citizen|123|123|123|123
+kk|Male|Citizen|123123|01622|kkkz@mail|root
+Keith|root|123123|Male|Citizen|016228|kkkz@mail.com

@@ -19,7 +19,7 @@ public class VaccineIO {
     public static ArrayList<Vaccination> allVaccine = new ArrayList<Vaccination>();
     public static void read(){
         try{
-            Scanner s = new Scanner(new File("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Vaccine.txt"));
+            Scanner s = new Scanner(new File("Vaccine.txt"));
             while(s.hasNextLine()){
                 String data = s.nextLine();
                 //need to split it and match the column/variable name
