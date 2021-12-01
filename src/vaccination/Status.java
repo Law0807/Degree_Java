@@ -5,6 +5,8 @@
  */
 package vaccination;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Keith
@@ -14,9 +16,9 @@ public class Status extends javax.swing.JFrame {
     /**
      * Creates new form Status
      */
+    public static UserAppointment UA;
     public Status() {
         initComponents();
-        Login.tempuser.getIc();
     }
 
     /**
@@ -31,8 +33,8 @@ public class Status extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblVacStatus = new javax.swing.JLabel();
         lblStatus = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblVaccineType = new javax.swing.JLabel();
+        lblType = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,11 +44,7 @@ public class Status extends javax.swing.JFrame {
 
         lblVacStatus.setText("Vaccination Status:");
 
-        lblStatus.setText("jLabel2");
-
-        jLabel2.setText("Vaccine Type:");
-
-        jLabel5.setText("jLabel5");
+        lblVaccineType.setText("Vaccine Type:");
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -64,12 +62,12 @@ public class Status extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
+                            .addComponent(lblVaccineType)
                             .addComponent(lblVacStatus))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
+                            .addComponent(lblType)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -89,8 +87,8 @@ public class Status extends javax.swing.JFrame {
                     .addComponent(lblStatus))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
+                    .addComponent(lblVaccineType)
+                    .addComponent(lblType))
                 .addGap(44, 44, 44)
                 .addComponent(jButton1)
                 .addContainerGap(93, Short.MAX_VALUE))
@@ -144,9 +142,9 @@ public class Status extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblType;
     private javax.swing.JLabel lblVacStatus;
+    private javax.swing.JLabel lblVaccineType;
     // End of variables declaration//GEN-END:variables
 }

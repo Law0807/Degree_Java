@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import static vaccination.UserIO.allUser;
-import static vaccination.UserIO.tempArray;
 
 /**
  *
@@ -47,13 +46,6 @@ public class VaccineIO {
                 pr.println(allVaccine.get(i).getVaccine()+" "+allVaccine.get(i).getQuantity()+" "+allVaccine.get(i).getSupplier());
             }
             pr.close();
-            //forgot password -> modify password
-            PrintWriter prpass = new PrintWriter("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Vaccine.txt");
-            for(String str: tempArray){
-                //write back the data to the file line by line
-                prpass.println(str);
-            }
-            prpass.close();
         } catch (Exception e){
             System.out.println("Error in write!");
         }

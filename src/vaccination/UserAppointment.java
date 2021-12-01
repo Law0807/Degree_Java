@@ -16,14 +16,17 @@ public class UserAppointment extends User{
     private String Centre;
     private String type;
     private String dose;
+    private String status;
     private ArrayList<Appointment> myAppointment = new ArrayList<Appointment>();
 
-    public UserAppointment(String name, String gender, String nationality, String ic, String phonenumber, String email, String password, String date, String Center, String type, String dose) {
+    public UserAppointment(String name, String gender, String nationality, String ic, String phonenumber, String email, 
+            String password, String date, String Center, String type, String dose, String status) {
         super(name, gender, nationality, ic, phonenumber, email, password);
         this.date = date;
         this.Centre = Centre;
         this.type = type;
         this.dose = dose;
+        this.status = status;
     }
 
     public String getDate() {
@@ -58,6 +61,14 @@ public class UserAppointment extends User{
         this.dose = dose;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     public ArrayList<Appointment> getMyAppointment() {
         return myAppointment;
     }

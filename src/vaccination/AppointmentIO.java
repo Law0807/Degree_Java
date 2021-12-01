@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import static vaccination.UserIO.allUser;
 
 /**
  *
@@ -21,10 +22,10 @@ public class AppointmentIO {
     public static ArrayList<UserAppointment> allAppointment = new ArrayList<UserAppointment>();
     public static void read(){
         try{
-            Scanner s = new Scanner(new File("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Appointment.txt"));
+            Scanner s = new Scanner(new File("Appointment.txt"));
             while(s.hasNextLine()){
                 String data = s.nextLine();
-                String [] arrData = data.split(Pattern.quote("|"),11);
+                String [] arrData = data.split(Pattern.quote("|"),12);
                 String name = arrData[0];
                 String gender = arrData[1];
                 String nationality = arrData[2];
@@ -36,11 +37,12 @@ public class AppointmentIO {
                 String Centre = arrData[8];
                 String type = arrData[9];
                 String dose = arrData[10];
+                String status = arrData[11];
                 
                 //for testing purpose REMOVE IT BEFORE SUBMIT
                 /*System.out.println(id+' '+name+' '+citizen+' '+phone+' '+email+' '+gender+' '+street+' '+city+
                         ' '+postcode+' '+state+' '+password+' '+securityQuestion+' '+securityAns);*/
-                UserAppointment a = new UserAppointment(name, gender, nationality, ic, phonenumber, email, password, date, Centre, type, dose);
+                UserAppointment a = new UserAppointment(name, gender, nationality, ic, phonenumber, email, password, date, Centre, type, dose, status);
                 allAppointment.add(a);
             }
         }catch(Exception e){
@@ -53,13 +55,13 @@ public class AppointmentIO {
     public static void read(String x, String y){
         //read data
         try{
-            FileReader modifypass = new FileReader("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Appointment.txt");
+            FileReader modifypass = new FileReader("Appointment.txt");
             Scanner s = new Scanner(modifypass);
             String line;
             while(s.hasNextLine()){
                 line=s.nextLine();
                 //need to split it and match the column/variable name
-                String [] arrData = line.split(Pattern.quote("|"),13);
+                String [] arrData = line.split(Pattern.quote("|"),12);
                 if(x.equals(arrData[0])){
                     //if the id is present, add the old info + new info into
                     //the tempArray
@@ -78,23 +80,27 @@ public class AppointmentIO {
     
     public static void write(){
         try{
-            PrintWriter pr = new PrintWriter("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Appointment.txt");
+            PrintWriter pr = new PrintWriter("Appointment.txt");
             for(int i=0; i<allAppointment.size();i++){           
                 pr.println(allAppointment.get(i).getName()+"|"+allAppointment.get(i).getGender()+"|"+allAppointment.get(i).getNationality()+allAppointment.get(i).getIc()+"|"
                 +"|"+allAppointment.get(i).getEmailaddress()+"|"+allAppointment.get(i).getPhonenumber()+"|"+allAppointment.get(i).getPassword()+"|"+allAppointment.get(i).getDate()
-                +"|"+allAppointment.get(i).getCentre()+"|"+allAppointment.get(i).getType()+"|"+allAppointment.get(i).getDose());
+                +"|"+allAppointment.get(i).getCentre()+"|"+allAppointment.get(i).getType()+"|"+allAppointment.get(i).getDose()+"|"+allAppointment.get(i).getStatus());
             }
             pr.close();
-            //forgot password -> modify password
-            PrintWriter prpass = new PrintWriter("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Appointment.txt");
-            for(String str: tempArray){
-                //write back the data to the file line by line
-                prpass.println(str);
-            }
-            prpass.close();
+            
         } catch (Exception e){
             System.out.println("Error in write!");
         }
+    }
+    
+    public static UserAppointment checking(String x){
+        Appointment found = null;
+        for(UserAppointment c:allAppointment){
+            if(x.equals(c.getIc())){
+            return c;
+            }
+        }
+        return null;
     }
        
 }

@@ -17,6 +17,11 @@ public class CustomerProfile extends javax.swing.JFrame {
     public CustomerProfile() {
         initComponents();
         Login.tempuser.getIc();
+        txtName.setText(Login.tempuser.getName());
+        txtIC.setText(Login.tempuser.getIc());
+        txtNationality.setText(Login.tempuser.getNationality());
+        txtPhoneNumber.setText(Login.tempuser.getPhonenumber());
+        txtEmail.setText(Login.tempuser.getEmailaddress());
     }
 
     /**
@@ -33,7 +38,6 @@ public class CustomerProfile extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        lblNationality = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -41,8 +45,7 @@ public class CustomerProfile extends javax.swing.JFrame {
         txtIC = new javax.swing.JTextField();
         txtPhoneNumber = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
+        txtNationality = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,8 +69,6 @@ public class CustomerProfile extends javax.swing.JFrame {
 
         jLabel3.setText("Nationality:");
 
-        lblNationality.setText("CITIZEN");
-
         jLabel4.setText("Phone Number:");
 
         jLabel7.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 24)); // NOI18N
@@ -83,9 +84,7 @@ public class CustomerProfile extends javax.swing.JFrame {
 
         txtEmail.setEditable(false);
 
-        jLabel6.setText("Password:");
-
-        txtPassword.setEditable(false);
+        txtNationality.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,16 +104,14 @@ public class CustomerProfile extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel6)
                             .addComponent(jLabel5))
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtName)
-                            .addComponent(txtPassword)
                             .addComponent(txtIC)
                             .addComponent(txtPhoneNumber)
                             .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                            .addComponent(lblNationality, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtNationality)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(jLabel7)))
@@ -129,10 +126,6 @@ public class CustomerProfile extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -140,7 +133,7 @@ public class CustomerProfile extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(lblNationality))
+                    .addComponent(txtNationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -149,7 +142,7 @@ public class CustomerProfile extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClear)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,7 +162,6 @@ public class CustomerProfile extends javax.swing.JFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
         txtName.setText("");
-        txtPassword.setText("");
         txtIC.setText("");
         txtPhoneNumber.setText("");
         txtEmail.setText("");
@@ -218,13 +210,11 @@ public class CustomerProfile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel lblNationality;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIC;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtNationality;
     private javax.swing.JTextField txtPhoneNumber;
     // End of variables declaration//GEN-END:variables
 }
