@@ -19,9 +19,9 @@ public class UserAppointment extends User{
     private String status;
     private ArrayList<Appointment> myAppointment = new ArrayList<Appointment>();
 
-    public UserAppointment(String name, String gender, String nationality, String ic, String phonenumber, String email, 
-            String password, String date, String Center, String type, String dose, String status) {
-        super(name, gender, nationality, ic, phonenumber, email, password);
+    public UserAppointment(String name, String password, String ic, String gender, String nationality, String phonenumber, String email, 
+             String date, String Center, String type, String dose, String status) {
+        super(name, password, ic, gender, nationality, phonenumber, email);
         this.date = date;
         this.Centre = Centre;
         this.type = type;
