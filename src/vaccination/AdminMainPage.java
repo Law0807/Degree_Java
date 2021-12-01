@@ -120,6 +120,7 @@ public class AdminMainPage extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tblAppointments = new javax.swing.JTable();
         cmbNationality = new javax.swing.JComboBox<>();
+        btnAdd = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuVaccine = new javax.swing.JMenuItem();
@@ -243,6 +244,13 @@ public class AdminMainPage extends javax.swing.JFrame {
 
         cmbNationality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Citizen", "Non-Citizen" }));
 
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Go To..");
 
         menuVaccine.setText("Manage Vaccine");
@@ -284,15 +292,16 @@ public class AdminMainPage extends javax.swing.JFrame {
                     .addComponent(cmbNationality, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                     .addComponent(txtEmail))
-                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(128, 128, 128))
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel7)
@@ -305,8 +314,8 @@ public class AdminMainPage extends javax.swing.JFrame {
                             .addComponent(cmbCentre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbDose, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtDate)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,7 +365,8 @@ public class AdminMainPage extends javax.swing.JFrame {
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(btnExit)
-                            .addComponent(btnUpdate)))
+                            .addComponent(btnUpdate)
+                            .addComponent(btnAdd)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -366,6 +376,7 @@ public class AdminMainPage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -390,38 +401,42 @@ public class AdminMainPage extends javax.swing.JFrame {
         String dose = (String)cmbDose.getSelectedItem();
         
         ArrayList<String> tempArray = new ArrayList<>();
-        UserAppointment found = AppointmentIO.checking(ic);
+        User found = UserIO.checking(ic);
         try{
             if(ic.equals(found.getIc())){
-                UserAppointment a = new UserAppointment(name, password, ic, gender, nationality, phone, email, status, date, centre, type, dose);
+                //UserAppointment a = new UserAppointment(name, password, ic, gender, nationality, phone, email, status, date, centre, type, dose);
                 try{
                     FileReader fr = new FileReader("Appointment.txt");
                     Scanner sc = new Scanner(fr);
                     while(sc.hasNextLine()){
                         String line = sc.nextLine();
-                        String[] arrData = line.split(Pattern.quote("\\|"), 12);
+                        String[] arrData = line.split("\\|");
+                        System.out.println(line);
                         if(ic.equals(arrData[2])){
-                            tempArray.add(name + "|" + password + ic + gender + nationality + phone + email + status + date + centre + type + dose);
+                            tempArray.add(name + "|" + password + "|" + ic + "|" + gender + "|" + nationality + "|" + phone 
+                                    + "|" + email + "|" + status + "|" + date + "|" + centre + "|" + type + "|" + dose);
                         }else{
                             tempArray.add(line);
                         }
                     }
                     sc.close();
+                 
                 } catch (Exception e){
                     System.out.println(e);
                 }
                 try{
                     PrintWriter pr = new PrintWriter("Appointment.txt");
                     for(String str:tempArray){
+                        System.out.println(str);
                         pr.println(str);
                     }
                     pr.close();
                 } catch (Exception e){
                     System.out.println("Error in passing!");
                 }
-                JOptionPane.showMessageDialog(null, "Appointment Updated.");
-                new AdminMainPage().setVisible(true);
-                this.dispose();
+                   JOptionPane.showMessageDialog(null, "Appointment Updated.");
+                    this.dispose();
+                    new AdminMainPage().setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null,"No appointment made yet.");
             }
@@ -465,6 +480,60 @@ public class AdminMainPage extends javax.swing.JFrame {
         cmbDose.setSelectedItem(appmodel.getValueAt(index,10).toString());
     }//GEN-LAST:event_tblAppointmentsMouseClicked
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        String name = txtUsername.getText();
+        String password = "";
+        String ic = txtIC.getText();
+        String gender = (String)cmbGender.getSelectedItem();
+        String nationality = (String)cmbNationality.getSelectedItem();
+        String phone = txtPhone.getText();
+        String email = txtEmail.getText();
+        String status = txtStatus.getText();
+        String date = txtDate.getText();
+        String centre = (String)cmbCentre.getSelectedItem();
+        String type = (String)cmbVType.getSelectedItem();
+        String dose = (String)cmbDose.getSelectedItem();
+        
+        ArrayList<String> tempArray = new ArrayList<>();
+        User found = UserIO.checking(ic);
+        try{
+            if(ic.equals(found.getIc())){
+                UserAppointment a = new UserAppointment(name, password, ic, gender, nationality, phone, email, status, date, centre, type, dose);
+                try{
+                    FileReader fr = new FileReader("Appointment.txt");
+                    Scanner sc = new Scanner(fr);
+                    while(sc.hasNextLine()){
+                        String line = sc.nextLine();
+                        tempArray.add(line);                
+                    }
+                    
+                    tempArray.add(a.getName() + "|" + a.getPassword() + "|" + a.getIc() + "|" + a.getGender() + "|" + a.getNationality() + "|" + 
+                        a.getPhonenumber() + "|" + a.getEmailaddress() + "|" + a.getStatus() + "|" + a.getDate() + "|" + a.getCentre() + "|" + 
+                        a.getType() + "|" + a.getDose());
+                    
+                    PrintWriter pr = new PrintWriter("Appointment.txt");
+                    for(String str:tempArray){
+                        System.out.println(str);
+                        pr.println(str);
+                    }
+                    pr.close();
+                    fr.close();
+                    sc.close();
+                } catch (Exception e){
+                    System.out.println("Error in passing!");
+                }
+                   JOptionPane.showMessageDialog(null, "Appointment Updated.");
+                    this.dispose();
+                    new AdminMainPage().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null,"No appointment made yet.");
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -501,6 +570,7 @@ public class AdminMainPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbCentre;

@@ -72,7 +72,7 @@ public class UserIO {
         UserIO.read();
         for(User c:allUser){
             if(x.equals(c.getIc())){
-            return c;
+                return c;
             }
         }
         return null;

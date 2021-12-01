@@ -6,7 +6,6 @@
 package vaccination;
 
 import javax.swing.JOptionPane;
-import static vaccination.Login.tempuser;
 
 /**
  *
@@ -35,10 +34,12 @@ public class Appointment extends javax.swing.JFrame {
                txtStatus.setText(Appointment.UA.getStatus());
             }else{
                 JOptionPane.showMessageDialog(null, "Appointment Not Made Yet.");
+                btnDecline.setEnabled(false);
             }
         } else{
             JOptionPane.showMessageDialog(null, "Appointment Not Made Yet.");
             txtStatus.setText("Pending");
+            btnDecline.setEnabled(false);
             setVisible(false);
         }
     }
@@ -184,6 +185,7 @@ public class Appointment extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
@@ -191,6 +193,7 @@ public class Appointment extends javax.swing.JFrame {
         int reply = JOptionPane.showConfirmDialog(null, "Only decline if you really can't make it on the day. Decline without valid reason will be punished.", "Confirm?",JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
         JOptionPane.showMessageDialog(null, "Please make new appointment soon.");
+        Appointment.UA.setStatus("Declined");
         } else {
         JOptionPane.showMessageDialog(null, "Appointment is not changed.");
         }
