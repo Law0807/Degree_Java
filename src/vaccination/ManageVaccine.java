@@ -104,6 +104,11 @@ public class ManageVaccine extends javax.swing.JFrame {
         });
 
         btnGeneratePdf.setText("Generate PDF");
+        btnGeneratePdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGeneratePdfActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(listVaccine);
 
@@ -324,6 +329,10 @@ public class ManageVaccine extends javax.swing.JFrame {
         new AdminMainPage().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_menuAppointmentActionPerformed
+
+    private void btnGeneratePdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePdfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGeneratePdfActionPerformed
 
     /**
      * @param args the command line arguments
