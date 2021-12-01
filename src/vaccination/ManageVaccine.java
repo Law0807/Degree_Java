@@ -63,6 +63,8 @@ public class ManageVaccine extends javax.swing.JFrame {
         btnGeneratePdf = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listVaccine = new javax.swing.JList<>();
+        lblCentre = new javax.swing.JLabel();
+        txtCentre = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuAppointment = new javax.swing.JMenuItem();
@@ -110,7 +112,14 @@ public class ManageVaccine extends javax.swing.JFrame {
             }
         });
 
+        listVaccine.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listVaccineMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listVaccine);
+
+        lblCentre.setText("Centre");
 
         jMenu1.setText("Go To...");
 
@@ -131,34 +140,37 @@ public class ManageVaccine extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnGeneratePdf, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 44, Short.MAX_VALUE)
-                        .addComponent(btnAdd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSave))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCentre)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3))
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtVaccine)
-                                    .addComponent(txtQuantity)
-                                    .addComponent(txtSupplier))))))
+                            .addComponent(txtVaccine)
+                            .addComponent(txtQuantity)
+                            .addComponent(txtSupplier)
+                            .addComponent(txtCentre)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(btnGeneratePdf, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnAdd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnUpdate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSave)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
@@ -170,7 +182,11 @@ public class ManageVaccine extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtVaccine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCentre)
+                    .addComponent(txtCentre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -178,7 +194,7 @@ public class ManageVaccine extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnGeneratePdf)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -186,7 +202,7 @@ public class ManageVaccine extends javax.swing.JFrame {
                     .addComponent(btnDelete)
                     .addComponent(btnAdd)
                     .addComponent(btnSave))
-                .addGap(17, 17, 17))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -198,7 +214,7 @@ public class ManageVaccine extends javax.swing.JFrame {
         //DefaultListModel listModel = new DefaultListModel();
         int index = listVaccine.getSelectedIndex();
         {
-            String a = txtVaccine.getText() + " " + txtQuantity.getText() + " " + txtSupplier.getText();
+            String a = txtVaccine.getText() + " " + txtCentre.getText() + " " +txtQuantity.getText() + " " + txtSupplier.getText();
             listModel.setElementAt(a, index);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -241,12 +257,15 @@ public class ManageVaccine extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         String vaccine = txtVaccine.getText();
+        String centre = txtCentre.getText();
         String quantity = txtQuantity.getText();
         String supplier = txtSupplier.getText();
 
-        if (vaccine.isEmpty() || quantity.isEmpty() || supplier.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Please do not leave any empty field.");
-        } else {
+        if (vaccine.isEmpty() || quantity.isEmpty() || supplier.isEmpty() || centre.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please do not leave any empty field.");
+        } else if(quantity.contains("-")){
+            JOptionPane.showMessageDialog(null, "Please do not input negative number.");
+        }else {
                 FileReader rfv = null;
                 BufferedReader brv = null;
 
@@ -263,7 +282,7 @@ public class ManageVaccine extends javax.swing.JFrame {
                 try {
 
                         while ((line = brv.readLine()) != null) {
-                                if (line.contains(vaccine)) {
+                                if (line.contains(vaccine) && line.contains(centre)) {
                                         check = true;
                                         s = line;
                                         details = s.split(" ");
@@ -275,6 +294,7 @@ public class ManageVaccine extends javax.swing.JFrame {
                 if (check = true) {
                         JOptionPane.showMessageDialog(null, "Vaccine already existed in database.");
                         txtVaccine.setText("");
+                        txtCentre.setText("");
                         txtQuantity.setText("");
                         txtSupplier.setText("");
 
@@ -300,6 +320,7 @@ public class ManageVaccine extends javax.swing.JFrame {
                                 pw.flush();
                                 pw.close();
                                 txtVaccine.setText("");
+                                txtCentre.setText("");
                                 txtQuantity.setText("");
                                 txtSupplier.setText("");
 
@@ -316,6 +337,7 @@ public class ManageVaccine extends javax.swing.JFrame {
                                 pw.flush();
                                 pw.close();
                                 txtVaccine.setText("");
+                                txtCentre.setText("");
                                 txtQuantity.setText("");
                                 txtSupplier.setText("");
 
@@ -333,6 +355,16 @@ public class ManageVaccine extends javax.swing.JFrame {
     private void btnGeneratePdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePdfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGeneratePdfActionPerformed
+
+    private void listVaccineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listVaccineMouseClicked
+        // TODO add your handling code here:
+        String selected = listVaccine.getSelectedValue().toString();
+        String[] details = selected.split(" ");
+        txtVaccine.setText(details[0]);
+        txtCentre.setText(details[1]);
+        txtQuantity.setText(details[2]);
+        txtSupplier.setText(details[3]);
+    }//GEN-LAST:event_listVaccineMouseClicked
 
     /**
      * @param args the command line arguments
@@ -381,8 +413,10 @@ public class ManageVaccine extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCentre;
     private javax.swing.JList<String> listVaccine;
     private javax.swing.JMenuItem menuAppointment;
+    private javax.swing.JTextField txtCentre;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtSupplier;
     private javax.swing.JTextField txtVaccine;
