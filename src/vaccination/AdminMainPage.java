@@ -33,11 +33,15 @@ public class AdminMainPage extends javax.swing.JFrame {
      */
     public AdminMainPage() {
         initComponents();
-        
-        model = (DefaultTableModel)tblUsers.getModel();
+        initUserData();
+        initAppData();
+    }
+
+    public void initUserData(){
+    model = (DefaultTableModel)tblUsers.getModel();
         listUsers = GetDataIO.getUsers();
+        if(listUsers!=null){
         for(String user:listUsers){
-            System.out.println(user);
             String[] data = user.split("\\|");
             System.out.println(data.toString());
                 model.addRow(new String[]{
@@ -48,11 +52,17 @@ public class AdminMainPage extends javax.swing.JFrame {
                     data[5],
                     data[6]
                 });
+        }} else {
+            JOptionPane.showMessageDialog(null, "No Users Yet.");
         }
-        
+    }
+    
+    public void initAppData(){
+    model = (DefaultTableModel)tblAppointments.getModel();
         listAppointments = GetDataIO.getAppointment();
-        for(String listAppointments:listAppointments){
-            String[] data = listAppointments.split("\\|");
+        if(listAppointments!=null){
+        for(String appointment:listAppointments){
+            String[] data = appointment.split("\\|");
             model = (DefaultTableModel)tblAppointments.getModel();
             model.addRow(new String[]{
                 data[0],
@@ -67,10 +77,10 @@ public class AdminMainPage extends javax.swing.JFrame {
                 data[10],
                 data[11]
             });
+        }} else {
+            JOptionPane.showMessageDialog(null, "No Appointment Yet.");
         }
-        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

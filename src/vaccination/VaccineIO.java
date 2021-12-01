@@ -20,7 +20,7 @@ public class VaccineIO {
     public static ArrayList<Vaccination> allVaccine = new ArrayList<Vaccination>();
     public static void read(){
         try{
-            Scanner s = new Scanner(new File("Vaccine.txt"));
+            Scanner s = new Scanner(new File("Vaccines.txt"));
             allVaccine.clear();
             while(s.hasNextLine()){
                 String data = s.nextLine();
@@ -43,7 +43,7 @@ public class VaccineIO {
     
     public static void write(){
         try{
-            PrintWriter pr = new PrintWriter("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Vaccine.txt");
+            PrintWriter pr = new PrintWriter("Vaccines.txt");
             for(int i=0; i<allVaccine.size();i++){
                 pr.println(allVaccine.get(i).getVaccine()+" "+allVaccine.get(i).getQuantity()+" "+allVaccine.get(i).getSupplier());
             }

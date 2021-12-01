@@ -18,7 +18,7 @@ public class VaccinationSystem {
         AdminIO.read();
         AppointmentIO.read();
         VaccineIO.read();
-//        GetDataIO.read();
+        //GetDataIO.read();
         new MainPage().setVisible(true);
     }
     

@@ -18,7 +18,7 @@ public class AdminIO {
             Scanner s = new Scanner(new File("Staffs.txt"));
             while(s.hasNextLine()){
                 String data = s.nextLine();
-                String [] staffdetail = data.split(Pattern.quote(" "),3);
+                String [] staffdetail = data.split(Pattern.quote("|"),2);
                 String username = staffdetail[0];
                 String password = staffdetail[1];
                 
@@ -33,10 +33,11 @@ public class AdminIO {
     }
     
     public static Admin check(String x){
-        Admin found = null;
+        //Admin found = null;
+        AdminIO.read();
         for(Admin c:allStaff){
             if(x.equals(c.getusername())){
-            return c;
+                return c;
             }
         }
         return null;

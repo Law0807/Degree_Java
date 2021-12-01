@@ -20,6 +20,10 @@ public class Appointment extends javax.swing.JFrame {
     public static UserAppointment UA;
     public Appointment() {
         initComponents();
+        initApp();
+    }
+    
+    public void initApp(){
         String ic = Login.tempuser.getIc();
         UserAppointment found = AppointmentIO.checking(ic);
         if(found!=null){
