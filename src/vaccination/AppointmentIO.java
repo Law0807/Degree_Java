@@ -39,7 +39,7 @@ public class AppointmentIO {
                 String Centre = arrData[8];
                 String type = arrData[9];
                 String dose = arrData[10];
-                String status = arrData[11];
+                 String status = arrData[11];
                 
                 //for testing purpose REMOVE IT BEFORE SUBMIT
                 /*System.out.println(id+' '+name+' '+citizen+' '+phone+' '+email+' '+gender+' '+street+' '+city+

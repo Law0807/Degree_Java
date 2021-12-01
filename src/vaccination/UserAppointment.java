@@ -20,7 +20,7 @@ public class UserAppointment extends User{
     private ArrayList<Appointment> myAppointment = new ArrayList<Appointment>();
 
     public UserAppointment(String name, String password, String ic, String gender, String nationality, String phonenumber, String email, 
-             String date, String Center, String type, String dose, String status) {
+             String status, String date, String Centre, String type, String dose) {
         super(name, password, ic, gender, nationality, phonenumber, email);
         this.date = date;
         this.Centre = Centre;
