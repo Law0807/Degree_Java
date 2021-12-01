@@ -71,6 +71,7 @@ public class ManageVaccine extends javax.swing.JFrame {
         btnGeneratePdf = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        menuAppointment = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,12 +113,16 @@ public class ManageVaccine extends javax.swing.JFrame {
 
         btnGeneratePdf.setText("Generate PDF");
 
-        jMenu1.setText("Users");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setText("Go To...");
+
+        menuAppointment.setText("Manage Appointment");
+        menuAppointment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                menuAppointmentActionPerformed(evt);
             }
         });
+        jMenu1.add(menuAppointment);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -187,12 +192,6 @@ public class ManageVaccine extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        // TODO add your handling code here:
-        new AdminMainPage().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -325,6 +324,12 @@ public class ManageVaccine extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void menuAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAppointmentActionPerformed
+        // TODO add your handling code here:
+        new AdminMainPage().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_menuAppointmentActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -373,6 +378,7 @@ public class ManageVaccine extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> listVaccine;
+    private javax.swing.JMenuItem menuAppointment;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtSupplier;
     private javax.swing.JTextField txtVaccine;

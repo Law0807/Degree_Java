@@ -93,7 +93,8 @@ public class AdminMainPage extends javax.swing.JFrame {
         lblStatus = new javax.swing.JLabel();
         txtStatus = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
-        menuVaccine = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        menuVaccine = new javax.swing.JMenuItem();
 
         jLabel10.setText("jLabel10");
 
@@ -154,18 +155,17 @@ public class AdminMainPage extends javax.swing.JFrame {
 
         lblStatus.setText("Status");
 
-        menuVaccine.setText("Vaccine");
-        menuVaccine.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuVaccineMouseClicked(evt);
-            }
-        });
+        jMenu1.setText("Go To..");
+
+        menuVaccine.setText("Manage Vaccine");
         menuVaccine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuVaccineActionPerformed(evt);
             }
         });
-        jMenuBar1.add(menuVaccine);
+        jMenu1.add(menuVaccine);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -303,12 +303,6 @@ public class AdminMainPage extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void menuVaccineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVaccineActionPerformed
-        // TODO add your handling code here:
-        new ManageVaccine().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_menuVaccineActionPerformed
-
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         int index = listPreview.getSelectedIndex();
@@ -320,11 +314,11 @@ public class AdminMainPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void menuVaccineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuVaccineMouseClicked
+    private void menuVaccineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVaccineActionPerformed
         // TODO add your handling code here:
         new ManageVaccine().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_menuVaccineMouseClicked
+    }//GEN-LAST:event_menuVaccineActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,11 +375,12 @@ public class AdminMainPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JList<String> listPreview;
-    private javax.swing.JMenu menuVaccine;
+    private javax.swing.JMenuItem menuVaccine;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIC;
