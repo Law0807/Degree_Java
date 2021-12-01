@@ -25,13 +25,14 @@ public class Appointment extends javax.swing.JFrame {
     public void initApp(){
         String ic = Login.tempuser.getIc();
         UserAppointment found = AppointmentIO.checking(ic);
+        UA = found;
         if(found!=null){
             if(ic.equals(found.getIc())){
+               txtStatus.setText(Appointment.UA.getStatus());
                txtDate.setText(Appointment.UA.getDate());
                txtVaccineCentre.setText(Appointment.UA.getCentre());
                txtVaccineType.setText(Appointment.UA.getType());
                txtDose.setText(Appointment.UA.getDose());
-               txtStatus.setText(Appointment.UA.getStatus());
             }else{
                 JOptionPane.showMessageDialog(null, "Appointment Not Made Yet.");
                 btnDecline.setEnabled(false);

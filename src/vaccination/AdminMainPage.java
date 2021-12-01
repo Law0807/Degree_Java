@@ -508,7 +508,7 @@ public class AdminMainPage extends javax.swing.JFrame {
                         tempArray.add(line);                
                     }
                     
-                    tempArray.add(a.getName() + "|" + a.getPassword() + "|" + a.getIc() + "|" + a.getGender() + "|" + a.getNationality() + "|" + 
+                    tempArray.add(a.getName() + "|" + a.getIc() + "|" + a.getGender() + "|" + a.getNationality() + "|" + 
                         a.getPhonenumber() + "|" + a.getEmailaddress() + "|" + a.getStatus() + "|" + a.getDate() + "|" + a.getCentre() + "|" + 
                         a.getType() + "|" + a.getDose());
                     
