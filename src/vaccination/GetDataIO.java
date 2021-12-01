@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class GetDataIO {
     private static final String users = "Users.txt";
-    private static final String appointment = "Appointments.txt";
+    private static final String appointment = "Appointment.txt";
 
     public static String[] getAppointment() {
         List<String> data = null;

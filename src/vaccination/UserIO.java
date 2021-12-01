@@ -17,6 +17,7 @@ public class UserIO {
     public static void read(){
         try{
             Scanner s = new Scanner(new File("Users.txt"));
+            allUser.clear();
             while(s.hasNextLine()){
                 String data = s.nextLine();
                 //need to split it and match the column/variable name
@@ -29,9 +30,6 @@ public class UserIO {
                 String phone = arrData[5];
                 String email = arrData[6];
                 
-                //for testing purpose REMOVE IT BEFORE SUBMIT
-                /*System.out.println(id+' '+name+' '+citizen+' '+phone+' '+email+' '+gender+' '+street+' '+city+
-                        ' '+postcode+' '+state+' '+password+' '+securityQuestion+' '+securityAns);*/
                 User c = new User(name, password, ic, gender, nationality, phone, email);
                 allUser.add(c);
             }
@@ -70,10 +68,11 @@ public class UserIO {
     
     //to check the account is existing or not
     public static User checking(String x){
-        User found = null;
+        //User found = null;
+        UserIO.read();
         for(User c:allUser){
             if(x.equals(c.getIc())){
-            return c;
+                return c;
             }
         }
         return null;

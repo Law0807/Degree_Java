@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import static vaccination.UserIO.allUser;
+import static vaccination.UserIO.read;
 
 /**
  *
@@ -23,6 +24,7 @@ public class AppointmentIO {
     public static void read(){
         try{
             Scanner s = new Scanner(new File("Appointment.txt"));
+            allAppointment.clear();
             while(s.hasNextLine()){
                 String data = s.nextLine();
                 String [] arrData = data.split(Pattern.quote("|"),12);
@@ -50,34 +52,6 @@ public class AppointmentIO {
         }
     }
     
-    //forgot password read data
-    public static ArrayList<String> tempArray = new ArrayList<>();
-    public static void read(String x, String y){
-        //read data
-        try{
-            FileReader modifypass = new FileReader("Appointment.txt");
-            Scanner s = new Scanner(modifypass);
-            String line;
-            while(s.hasNextLine()){
-                line=s.nextLine();
-                //need to split it and match the column/variable name
-                String [] arrData = line.split(Pattern.quote("|"),12);
-                if(x.equals(arrData[0])){
-                    //if the id is present, add the old info + new info into
-                    //the tempArray
-                    tempArray.add(arrData[0]+"|"+arrData[1]+"|"+arrData[2]+"|"+arrData[3]+
-                    "|"+arrData[4]+"|"+arrData[5]+"|"+arrData[6]+"|"+arrData[7]+"|"+arrData[8]+"|"+arrData[9]+"|"+arrData[10]+"|"+arrData[11]+"|");
-                }else{
-                    //if the id doesn't match, add the line
-                    tempArray.add(line);
-                }
-            }
-            s.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
-    }
-    
     public static void write(){
         try{
             PrintWriter pr = new PrintWriter("Appointment.txt");
@@ -94,7 +68,8 @@ public class AppointmentIO {
     }
     
     public static UserAppointment checking(String x){
-        Appointment found = null;
+        //Appointment found = null;
+        AppointmentIO.read();
         for(UserAppointment c:allAppointment){
             if(x.equals(c.getIc())){
             return c;
