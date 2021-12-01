@@ -14,6 +14,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
@@ -275,28 +277,25 @@ public class AdminMainPage extends javax.swing.JFrame {
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(128, 128, 128))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel11)
-                                    .addComponent(lblStatus))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbVType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbCentre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbDose, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtDate)
-                                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11)
+                            .addComponent(lblStatus))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbVType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbCentre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbDose, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDate)
+                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
@@ -368,6 +367,7 @@ public class AdminMainPage extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         String name = txtUsername.getText();
+        String password = "";
         String ic = txtIC.getText();
         String gender = (String)cmbGender.getSelectedItem();
         String nationality = (String)cmbNationality.getSelectedItem();
@@ -379,7 +379,45 @@ public class AdminMainPage extends javax.swing.JFrame {
         String type = (String)cmbVType.getSelectedItem();
         String dose = (String)cmbDose.getSelectedItem();
         
-        
+        ArrayList<String> tempArray = new ArrayList<>();
+        UserAppointment found = AppointmentIO.checking(ic);
+        try{
+            if(ic.equals(found.getIc())){
+                UserAppointment a = new UserAppointment(name, password, ic, gender, nationality, phone, email, status, date, centre, type, dose);
+                try{
+                    FileReader fr = new FileReader("Appointment.txt");
+                    Scanner sc = new Scanner(fr);
+                    while(sc.hasNextLine()){
+                        String line = sc.nextLine();
+                        String[] arrData = line.split(Pattern.quote("\\|"), 12);
+                        if(ic.equals(arrData[2])){
+                            tempArray.add(name + "|" + password + ic + gender + nationality + phone + email + status + date + centre + type + dose);
+                        }else{
+                            tempArray.add(line);
+                        }
+                    }
+                    sc.close();
+                } catch (Exception e){
+                    System.out.println(e);
+                }
+                try{
+                    PrintWriter pr = new PrintWriter("Appointment.txt");
+                    for(String str:tempArray){
+                        pr.println(str);
+                    }
+                    pr.close();
+                } catch (Exception e){
+                    System.out.println("Error in passing!");
+                }
+                JOptionPane.showMessageDialog(null, "Appointment Updated.");
+                new AdminMainPage().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null,"No appointment made yet.");
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void menuVaccineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVaccineActionPerformed

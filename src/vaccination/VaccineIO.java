@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import static vaccination.UserIO.allUser;
+import static vaccination.UserIO.read;
 
 /**
  *
@@ -20,6 +21,7 @@ public class VaccineIO {
     public static void read(){
         try{
             Scanner s = new Scanner(new File("Vaccine.txt"));
+            allVaccine.clear();
             while(s.hasNextLine()){
                 String data = s.nextLine();
                 //need to split it and match the column/variable name
@@ -53,7 +55,8 @@ public class VaccineIO {
     
     //to check the account is existing or not
     public static Vaccination checking(String x){
-        Vaccination found = null;
+        //Vaccination found = null;
+        VaccineIO.read();
         for(Vaccination v:allVaccine){
             if(x.equals(v.getVaccine())){
             return v;

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import static vaccination.UserIO.allUser;
+import static vaccination.UserIO.read;
 
 /**
  *
@@ -23,6 +24,7 @@ public class AppointmentIO {
     public static void read(){
         try{
             Scanner s = new Scanner(new File("Appointment.txt"));
+            allAppointment.clear();
             while(s.hasNextLine()){
                 String data = s.nextLine();
                 String [] arrData = data.split(Pattern.quote("|"),12);
@@ -94,7 +96,8 @@ public class AppointmentIO {
     }
     
     public static UserAppointment checking(String x){
-        Appointment found = null;
+        //Appointment found = null;
+        AppointmentIO.read();
         for(UserAppointment c:allAppointment){
             if(x.equals(c.getIc())){
             return c;
