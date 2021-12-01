@@ -1,8 +1,0 @@
-<<<<<<< HEAD
-123|Male|Citizen|123|123|123|123
-=======
-Kiro|Male|Citizen|123123|1234455|123@mail.com|root
-123|Male|Citizen|123|123|123|123
-kk|Male|Citizen|123123|01622|kkkz@mail|root
-Keith|root|123123|Male|Citizen|016228|kkkz@mail.com
->>>>>>> 2adb950e30052b05b404c3f69595d902cdeb73f7

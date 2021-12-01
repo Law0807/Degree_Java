@@ -14,8 +14,8 @@ import java.util.List;
  * @author liyaw
  */
 public class GetDataIO {
-    private static final String people = "Users.txt";
-    private static final String appointment = "Appointment.txt";
+    private static final String users = "Users.txt";
+    private static final String appointment = "Appointments.txt";
 
     public static String[] getAppointment() {
         List<String> data = null;
@@ -30,10 +30,10 @@ public class GetDataIO {
         return container;
     }
 
-    public static String[] getPeople() {
+    public static String[] getUsers() {
         List<String> data = null;
         try {
-            data = Files.readAllLines(Paths.get(people));
+            data = Files.readAllLines(Paths.get(users));
         } catch (IOException a) {
            System.out.println(a);
         }
