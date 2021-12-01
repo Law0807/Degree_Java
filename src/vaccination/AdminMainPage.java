@@ -13,45 +13,60 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Keith
  */
 public class AdminMainPage extends javax.swing.JFrame {
     
-    DefaultListModel listModel = new DefaultListModel();
+    DefaultTableModel model;
+    String [] listUsers, listAppointments;
     /**
      * Creates new form AdminMainPage
      */
     public AdminMainPage() {
         initComponents();
-        File archivo = new File("Appointment.txt");
-        FileReader fr = null;
-        try {
-                fr = new FileReader(archivo);
-                // archivo is the type of font
-        } catch (FileNotFoundException e3) {
-                e3.printStackTrace();
+        
+        model = (DefaultTableModel)tblUsers.getModel();
+        listUsers = GetDataIO.getUsers();
+        for(String user:listUsers){
+            System.out.println(user);
+            String[] data = user.split("\\|");
+            System.out.println(data.toString());
+                model.addRow(new String[]{
+                    data[0],
+                    data[2],
+                    data[3],
+                    data[4],
+                    data[5],
+                    data[6]
+                });
         }
-        BufferedReader br = new BufferedReader(fr);
-
-        String line = null;
-        try {
-                while ((line = br.readLine()) != null) {
-                        listModel.addElement(line);
-                }
-        } catch (IOException e2) {
-                e2.printStackTrace();
+        
+        listAppointments = GetDataIO.getAppointment();
+        for(String listAppointments:listAppointments){
+            String[] data = listAppointments.split("\\|");
+            model = (DefaultTableModel)tblAppointments.getModel();
+            model.addRow(new String[]{
+                data[0],
+                data[2],
+                data[3],
+                data[4],
+                data[5],
+                data[6],
+                data[7],
+                data[8],
+                data[9],
+                data[10],
+                data[11]
+            });
         }
-
-        try {
-                fr.close();
-        } catch (IOException e1) {
-                e1.printStackTrace();
-        }
+        
     }
 
     /**
@@ -76,10 +91,8 @@ public class AdminMainPage extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         txtIC = new javax.swing.JTextField();
-        txtNationality = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
-        btnSave = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         cmbVType = new javax.swing.JComboBox<>();
         cmbCentre = new javax.swing.JComboBox<>();
@@ -87,11 +100,14 @@ public class AdminMainPage extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         txtDate = new javax.swing.JTextField();
         cmbGender = new javax.swing.JComboBox<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listPreview = new javax.swing.JList<>();
         btnUpdate = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
         txtStatus = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblUsers = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblAppointments = new javax.swing.JTable();
+        cmbNationality = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuVaccine = new javax.swing.JMenuItem();
@@ -120,13 +136,6 @@ public class AdminMainPage extends javax.swing.JFrame {
 
         jLabel9.setText("Dose");
 
-        btnSave.setText("Save");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,8 +153,6 @@ public class AdminMainPage extends javax.swing.JFrame {
 
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
-        jScrollPane2.setViewportView(listPreview);
-
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +161,75 @@ public class AdminMainPage extends javax.swing.JFrame {
         });
 
         lblStatus.setText("Status");
+
+        tblUsers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Username", "IC", "Gender", "Nationality", "Phone", "Email"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsersMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblUsers);
+        if (tblUsers.getColumnModel().getColumnCount() > 0) {
+            tblUsers.getColumnModel().getColumn(0).setResizable(false);
+            tblUsers.getColumnModel().getColumn(1).setResizable(false);
+            tblUsers.getColumnModel().getColumn(2).setResizable(false);
+            tblUsers.getColumnModel().getColumn(3).setResizable(false);
+            tblUsers.getColumnModel().getColumn(4).setResizable(false);
+            tblUsers.getColumnModel().getColumn(5).setResizable(false);
+        }
+
+        tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "IC", "Gender", "Nationality", "Phone", "Email", "Status", "Date", "Centre", "Vaccine", "Dose"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAppointmentsMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblAppointments);
+        if (tblAppointments.getColumnModel().getColumnCount() > 0) {
+            tblAppointments.getColumnModel().getColumn(0).setResizable(false);
+            tblAppointments.getColumnModel().getColumn(1).setResizable(false);
+            tblAppointments.getColumnModel().getColumn(2).setResizable(false);
+            tblAppointments.getColumnModel().getColumn(3).setResizable(false);
+            tblAppointments.getColumnModel().getColumn(4).setResizable(false);
+            tblAppointments.getColumnModel().getColumn(5).setResizable(false);
+            tblAppointments.getColumnModel().getColumn(6).setResizable(false);
+            tblAppointments.getColumnModel().getColumn(7).setResizable(false);
+            tblAppointments.getColumnModel().getColumn(8).setResizable(false);
+            tblAppointments.getColumnModel().getColumn(9).setResizable(false);
+            tblAppointments.getColumnModel().getColumn(10).setResizable(false);
+        }
+
+        cmbNationality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Citizen", "Non-Citizen" }));
 
         jMenu1.setText("Go To..");
 
@@ -174,98 +250,88 @@ public class AdminMainPage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel1))
-                        .addGap(27, 27, 27)
+                            .addComponent(jLabel6))
+                        .addGap(52, 52, 52)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(txtIC, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(cmbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbNationality, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(txtEmail))
+                .addGap(69, 69, 69)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNationality, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIC, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(122, 122, 122)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnUpdate)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel11)
-                                            .addComponent(lblStatus))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cmbVType, 0, 144, Short.MAX_VALUE)
-                                            .addComponent(cmbCentre, 0, 144, Short.MAX_VALUE)
-                                            .addComponent(cmbDose, 0, 144, Short.MAX_VALUE)
-                                            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                                            .addComponent(txtStatus))))))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel11)
+                                    .addComponent(lblStatus))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbVType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbCentre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbDose, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtDate)
+                                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(lblStatus)
-                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel2)))
-                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSave)
-                            .addComponent(btnExit)
-                            .addComponent(btnUpdate)))
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblStatus)
+                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(cmbCentre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbCentre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
@@ -273,8 +339,21 @@ public class AdminMainPage extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(cmbDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                            .addComponent(cmbDose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(btnExit)
+                            .addComponent(btnUpdate)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cmbNationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(85, 85, 85)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -286,32 +365,21 @@ public class AdminMainPage extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnExitActionPerformed
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-        try { // trying to save file
-            BufferedWriter bw = new BufferedWriter(new FileWriter("Appointment.txt"));
-            for (int i = 0; i < listPreview.getModel().getSize(); i++) { // opens a cycle to automatically
-                // store data of all items
-                bw.write(listPreview.getModel().getElementAt(i)); // writing a line from jList1
-                bw.newLine(); // making a new line for the next item (by removing this line, You will write
-                                                    // only one line of all items in file)
-            }
-            bw.close();
-            JOptionPane.showMessageDialog(null, "Records successfully updated.");
-            } catch (IOException e1) {
-            e1.printStackTrace();
-            }
-    }//GEN-LAST:event_btnSaveActionPerformed
-
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        int index = listPreview.getSelectedIndex();
-        {
-            String a = txtUsername.getText() + " " + txtIC.getText() + " " + (String)cmbGender.getSelectedItem() + " "
-                            + txtEmail.getText() + " " + txtPhone.getText() + " " + txtDate.getText() + " " + txtStatus.getText() + " "
-                            + (String)cmbCentre.getSelectedItem() + " " + (String)cmbVType.getSelectedItem() + " " + (String)cmbDose.getSelectedItem();
-            listModel.setElementAt(a, index);
-        }
+        String name = txtUsername.getText();
+        String ic = txtIC.getText();
+        String gender = (String)cmbGender.getSelectedItem();
+        String nationality = (String)cmbNationality.getSelectedItem();
+        String phone = txtPhone.getText();
+        String email = txtEmail.getText();
+        String status = txtStatus.getText();
+        String date = txtDate.getText();
+        String centre = (String)cmbCentre.getSelectedItem();
+        String type = (String)cmbVType.getSelectedItem();
+        String dose = (String)cmbDose.getSelectedItem();
+        
+        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void menuVaccineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVaccineActionPerformed
@@ -319,6 +387,35 @@ public class AdminMainPage extends javax.swing.JFrame {
         new ManageVaccine().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_menuVaccineActionPerformed
+
+    private void tblUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsersMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel usersmodel = (DefaultTableModel)tblUsers.getModel();
+        int index = tblUsers.getSelectedRow();
+        txtUsername.setText(usersmodel.getValueAt(index,0).toString());
+        txtIC.setText(usersmodel.getValueAt(index,1).toString());
+        cmbGender.setSelectedItem(usersmodel.getValueAt(index,2).toString());
+        cmbNationality.setSelectedItem(usersmodel.getValueAt(index,3).toString());
+        txtPhone.setText(usersmodel.getValueAt(index,4).toString());
+        txtEmail.setText(usersmodel.getValueAt(index,5).toString());
+    }//GEN-LAST:event_tblUsersMouseClicked
+
+    private void tblAppointmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAppointmentsMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel appmodel = (DefaultTableModel)tblAppointments.getModel();
+        int index = tblAppointments.getSelectedRow();
+        txtUsername.setText(appmodel.getValueAt(index,0).toString());
+        txtIC.setText(appmodel.getValueAt(index,1).toString());
+        cmbGender.setSelectedItem(appmodel.getValueAt(index,2).toString());
+        cmbNationality.setSelectedItem(appmodel.getValueAt(index,3).toString());
+        txtPhone.setText(appmodel.getValueAt(index,4).toString());
+        txtEmail.setText(appmodel.getValueAt(index,5).toString());
+        txtStatus.setText(appmodel.getValueAt(index,6).toString());
+        txtDate.setText(appmodel.getValueAt(index,7).toString());
+        cmbCentre.setSelectedItem(appmodel.getValueAt(index,8).toString());
+        cmbVType.setSelectedItem(appmodel.getValueAt(index,9).toString());
+        cmbDose.setSelectedItem(appmodel.getValueAt(index,10).toString());
+    }//GEN-LAST:event_tblAppointmentsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -357,11 +454,11 @@ public class AdminMainPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbCentre;
     private javax.swing.JComboBox<String> cmbDose;
     private javax.swing.JComboBox<String> cmbGender;
+    private javax.swing.JComboBox<String> cmbNationality;
     private javax.swing.JComboBox<String> cmbVType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -377,14 +474,15 @@ public class AdminMainPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JList<String> listPreview;
     private javax.swing.JMenuItem menuVaccine;
+    private javax.swing.JTable tblAppointments;
+    private javax.swing.JTable tblUsers;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIC;
-    private javax.swing.JTextField txtNationality;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtUsername;
