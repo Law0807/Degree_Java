@@ -80,8 +80,8 @@ public class AppointmentIO {
         try{
             PrintWriter pr = new PrintWriter("C:\\Users\\liyaw\\OneDrive - Asia Pacific University\\Desktop\\Degree Sem1\\OODJ\\Database\\Appointment.txt");
             for(int i=0; i<allAppointment.size();i++){           
-                pr.println(allAppointment.get(i).getName()+"|"+allAppointment.get(i).getGender()+"|"+allAppointment.get(i).getnationality()+allAppointment.get(i).getIC()+"|"
-                +"|"+allAppointment.get(i).getemail()+"|"+allAppointment.get(i).getphonenumber()+"|"+allAppointment.get(i).getPassword()+"|"+allAppointment.get(i).getDate()
+                pr.println(allAppointment.get(i).getName()+"|"+allAppointment.get(i).getGender()+"|"+allAppointment.get(i).getNationality()+allAppointment.get(i).getIc()+"|"
+                +"|"+allAppointment.get(i).getEmailaddress()+"|"+allAppointment.get(i).getPhonenumber()+"|"+allAppointment.get(i).getPassword()+"|"+allAppointment.get(i).getDate()
                 +"|"+allAppointment.get(i).getCentre()+"|"+allAppointment.get(i).getType()+"|"+allAppointment.get(i).getDose());
             }
             pr.close();

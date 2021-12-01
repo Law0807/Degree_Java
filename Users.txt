@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 123|123|Male|123|1213|Citizen|123
 Keith|123|12312|Male|Citizen|1233333|kkkz@mail.com
+=======
+21|21|21|Male|Citizen|21|21
+>>>>>>> 6b873c9dacca58c07e15513237c05b1ee474b37e

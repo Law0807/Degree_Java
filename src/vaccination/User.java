@@ -13,21 +13,21 @@ public class User {
     private String name;
     private String password;
     private String ic;
+    private String gender;
     private String nationality;
     private String phonenumber;
     private String emailaddress;
-    private String gender;
     
-    public User(String name, String gender, String nationality, String ic, String phonenumber, String email, String password) {
+    public User(String name, String password, String ic, String gender, String nationality, String phonenumber, String email) {
         this.name = name;
+        this.password = password;
         this.ic = ic;
+        this.gender = gender;
         this.nationality = nationality;
         this.phonenumber = phonenumber;
         this.emailaddress = email;
-        this.password = password;
-        this.gender = gender;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -35,52 +35,53 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    
-    public String getIC(){
-        return ic;
-    }
-    
-    public void setIC(String ic){
-        this.ic = ic;
-    }
-    
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
-    
-    public void setPassword(String password){
+
+    public void setPassword(String password) {
         this.password = password;
     }
-    
-    public String getnationality(){
+
+    public String getIc() {
+        return ic;
+    }
+
+    public void setIc(String ic) {
+        this.ic = ic;
+    }
+
+    public String getNationality() {
         return nationality;
     }
-    
-    public void setnationality(){
+
+    public void setNationality(String nationality) {
         this.nationality = nationality;
     }
-    
-    public String getemail(){
-        return emailaddress;
-    }
-    
-    public void setemail(){
-        this.emailaddress = emailaddress;
-    }
-    
-    public String getphonenumber(){
+
+    public String getPhonenumber() {
         return phonenumber;
     }
-    
-    public void setphonenumber(){
-        this.phonenumber = phonenumber;    
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
-    
-    public String getGender(){
+
+    public String getEmailaddress() {
+        return emailaddress;
+    }
+
+    public void setEmailaddress(String emailaddress) {
+        this.emailaddress = emailaddress;
+    }
+
+    public String getGender() {
         return gender;
     }
-    
-    public void setGender(){
+
+    public void setGender(String gender) {
         this.gender = gender;
     }
+    
 }

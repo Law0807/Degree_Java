@@ -18,7 +18,7 @@ public class Appointment extends javax.swing.JFrame {
      */
     public Appointment() {
         initComponents();
-        Login.tempuser.getIC();
+        Login.tempuser.getIc();
     }
 
     /**
